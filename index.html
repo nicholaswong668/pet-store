@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetJoy Store - Premium Pet Supplies</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">🐾 PetJoy Store</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="cart-icon">
+                    <a href="cart.html">🛒 <span id="cart-count">0</span></a>
+                </div>
+                <div class="mobile-menu">☰</div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Premium Pet Supplies for Happy Pets</h1>
+                <p>Discover our curated collection of high-quality pet products that your furry friends will love.</p>
+                <a href="#products" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="feature-icon">🚚</span>
+                    <h3>Free Shipping</h3>
+                    <p>On orders over $35</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✅</span>
+                    <h3>Quality Guaranteed</h3>
+                    <p>100% satisfaction or refund</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🎁</span>
+                    <h3>Special Offers</h3>
+                    <p>Save up to 30% off</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">💬</span>
+                    <h3>24/7 Support</h3>
+                    <p>We're here to help</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=400&fit=crop" alt="Pet Lick Mat">
+                        <span class="product-badge">Best Seller</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Silicone Pet Lick Mat</h3>
+                        <p class="product-desc">Anxiety relief slow feeder for dogs and cats</p>
+                        <div class="product-price">
+                            <span class="price">$19.99</span>
+                            <span class="original-price">$29.99</span>
+                        </div>
+                        <button class="btn btn-add-cart" onclick="addToCart(1, 'Silicone Pet Lick Mat', 19.99)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=400&fit=crop" alt="Pet Paw Cleaner">
+                    </div>
+                    <div class="product-info">
+                        <h3>Portable Pet Paw Cleaner</h3>
+                        <p class="product-desc">Gentle silicone bristles for clean paws</p>
+                        <div class="product-price">
+                            <span class="price">$24.99</span>
+                            <span class="original-price">$34.99</span>
+                        </div>
+                        <button class="btn btn-add-cart" onclick="addToCart(2, 'Portable Pet Paw Cleaner', 24.99)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&h=400&fit=crop" alt="Teeth Whitening Kit">
+                        <span class="product-badge">New</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Teeth Whitening Kit</h3>
+                        <p class="product-desc">Professional whitening for bright smile</p>
+                        <div class="product-price">
+                            <span class="price">$29.99</span>
+                            <span class="original-price">$49.99</span>
+                        </div>
+                        <button class="btn btn-add-cart" onclick="addToCart(3, 'Teeth Whitening Kit', 29.99)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Subscribe for Exclusive Deals</h2>
+            <p>Get 10% off your first order and updates on new products!</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>🐾 PetJoy Store</h4>
+                    <p>Premium pet supplies for happy pets and happy owners.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@petjoystore.com</p>
+                    <div class="social-links">
+                        <a href="#">📘</a>
+                        <a href="#">📸</a>
+                        <a href="#">🐦</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PetJoy Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
