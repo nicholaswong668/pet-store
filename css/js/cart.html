@@ -5,164 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart - PetJoy Store</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        .cart-section {
-            padding: 60px 0;
-            min-height: 500px;
-        }
-        
-        .cart-container {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-        }
-        
-        .cart-items {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-        }
-        
-        .cart-item {
-            display: grid;
-            grid-template-columns: 100px 1fr auto;
-            gap: 20px;
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
-            align-items: center;
-        }
-        
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-        
-        .cart-item-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .cart-item-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .cart-item-info h3 {
-            color: var(--dark-color);
-            margin-bottom: 5px;
-        }
-        
-        .cart-item-price {
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 18px;
-        }
-        
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .quantity-btn {
-            width: 30px;
-            height: 30px;
-            border: 1px solid #ddd;
-            background: var(--white);
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        
-        .quantity-btn:hover {
-            background: var(--light-color);
-        }
-        
-        .quantity-value {
-            font-weight: 600;
-            min-width: 30px;
-            text-align: center;
-        }
-        
-        .remove-btn {
-            color: #e74c3c;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        
-        .cart-summary {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-            height: fit-content;
-        }
-        
-        .cart-summary h2 {
-            color: var(--dark-color);
-            margin-bottom: 20px;
-        }
-        
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .summary-row.total {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--dark-color);
-            border-bottom: none;
-            margin-top: 10px;
-        }
-        
-        .checkout-btn {
-            width: 100%;
-            margin-top: 20px;
-            padding: 15px;
-            font-size: 16px;
-        }
-        
-        .empty-cart {
-            text-align: center;
-            padding: 60px 20px;
-        }
-        
-        .empty-cart-icon {
-            font-size: 80px;
-            margin-bottom: 20px;
-        }
-        
-        .empty-cart h2 {
-            color: var(--dark-color);
-            margin-bottom: 15px;
-        }
-        
-        .continue-shopping {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--secondary-color);
-            font-weight: 600;
-        }
-        
-        @media (max-width: 768px) {
-            .cart-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .cart-item {
-                grid-template-columns: 80px 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <nav class="navbar">
@@ -178,58 +22,37 @@
                 <div class="cart-icon">
                     <a href="cart.html">🛒 <span id="cart-count">0</span></a>
                 </div>
-                <div class="mobile-menu">☰</div>
             </nav>
         </div>
     </header>
 
-    <!-- Cart Section -->
     <section class="cart-section">
         <div class="container">
-            <h1 class="section-title">Shopping Cart</h1>
-            
-            <div class="cart-container" id="cart-container">
+            <h1>Shopping Cart</h1>
+            <div id="cart-items" class="cart-items">
                 <!-- Cart items will be loaded here -->
+            </div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span id="cart-shipping">$0.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button class="btn btn-primary btn-checkout" onclick="checkout()">Proceed to Checkout</button>
+                <a href="index.html" class="btn btn-secondary">Continue Shopping</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>🐾 PetJoy Store</h4>
-                    <p>Premium pet supplies for happy pets and happy owners.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#products">Products</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Customer Service</h4>
-                    <ul>
-                        <li><a href="#">Shipping Info</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: support@petjoystore.com</p>
-                    <div class="social-links">
-                        <a href="#">📘</a>
-                        <a href="#">📸</a>
-                        <a href="#">🐦</a>
-                    </div>
-                </div>
-            </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 PetJoy Store. All rights reserved.</p>
             </div>
@@ -237,111 +60,5 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script>
-        // Load cart items
-        function loadCart() {
-            const cartContainer = document.getElementById('cart-container');
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            
-            if (cart.length === 0) {
-                cartContainer.innerHTML = `
-                    <div class="empty-cart" style="grid-column: 1 / -1;">
-                        <div class="empty-cart-icon">🛒</div>
-                        <h2>Your cart is empty</h2>
-                        <p>Looks like you haven't added any items yet.</p>
-                        <a href="index.html#products" class="continue-shopping">← Continue Shopping</a>
-                    </div>
-                `;
-                return;
-            }
-            
-            let cartItemsHTML = '<div class="cart-items">';
-            let subtotal = 0;
-            
-            cart.forEach((item, index) => {
-                subtotal += item.price * item.quantity;
-                cartItemsHTML += `
-                    <div class="cart-item">
-                        <div class="cart-item-image">
-                            <img src="https://via.placeholder.com/100x100/ff6b6b/ffffff?text=${item.name.charAt(0)}" alt="${item.name}">
-                        </div>
-                        <div class="cart-item-info">
-                            <h3>${item.name}</h3>
-                            <div class="cart-item-price">$${item.price.toFixed(2)}</div>
-                            <div class="quantity-control">
-                                <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
-                                <span class="quantity-value">${item.quantity}</span>
-                                <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
-                            </div>
-                        </div>
-                        <div>
-                            <div style="font-weight: 700; font-size: 18px; margin-bottom: 10px;">$${(item.price * item.quantity).toFixed(2)}</div>
-                            <div class="remove-btn" onclick="removeItem(${index})">Remove</div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            cartItemsHTML += '</div>';
-            
-            const shipping = subtotal > 35 ? 0 : 9.99;
-            const total = subtotal + shipping;
-            
-            const summaryHTML = `
-                <div class="cart-summary">
-                    <h2>Order Summary</h2>
-                    <div class="summary-row">
-                        <span>Subtotal</span>
-                        <span>$${subtotal.toFixed(2)}</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Shipping</span>
-                        <span>${shipping === 0 ? 'FREE' : '$' + shipping.toFixed(2)}</span>
-                    </div>
-                    <div class="summary-row total">
-                        <span>Total</span>
-                        <span>$${total.toFixed(2)}</span>
-                    </div>
-                    <button class="btn btn-primary checkout-btn" onclick="checkout()">Proceed to Checkout</button>
-                    <p style="text-align: center; margin-top: 15px; font-size: 14px; color: #636e72;">
-                        ${subtotal < 35 ? 'Add $' + (35 - subtotal).toFixed(2) + ' more for free shipping!' : '✓ You have free shipping!'}
-                    </p>
-                </div>
-            `;
-            
-            cartContainer.innerHTML = cartItemsHTML + summaryHTML;
-        }
-        
-        // Update quantity
-        function updateQuantity(index, change) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart[index].quantity += change;
-            
-            if (cart[index].quantity <= 0) {
-                cart.splice(index, 1);
-            }
-            
-            localStorage.setItem('cart', JSON.stringify(cart));
-            loadCart();
-            updateCartCount();
-        }
-        
-        // Remove item
-        function removeItem(index) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart.splice(index, 1);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            loadCart();
-            updateCartCount();
-        }
-        
-        // Checkout
-        function checkout() {
-            alert('Checkout feature coming soon! For now, please contact us at support@petjoystore.com');
-        }
-        
-        // Load cart on page load
-        document.addEventListener('DOMContentLoaded', loadCart);
-    </script>
 </body>
 </html>
