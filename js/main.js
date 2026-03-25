@@ -1,14 +1,9 @@
-// Shopping Cart Functionality
+// PetJoy Store - Shopping Cart Functionality
+
+// Initialize cart from localStorage or empty array
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-function updateCartCount() {
-    const cartCount = document.getElementById('cart-count');
-    if (cartCount) {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        cartCount.textContent = totalItems;
-    }
-}
-
+// Add item to cart
 function addToCart(id, name, price) {
     const existingItem = cart.find(item => item.id === id);
     
@@ -23,18 +18,20 @@ function addToCart(id, name, price) {
         });
     }
     
-    localStorage.setItem('cart', JSON.stringify(cart));
+    saveCart();
     updateCartCount();
-    showNotification(name + ' added to cart!');
+    showNotification(`${name} added to cart!`);
 }
 
+// Remove item from cart
 function removeFromCart(id) {
     cart = cart.filter(item => item.id !== id);
-    localStorage.setItem('cart', JSON.stringify(cart));
+    saveCart();
     updateCartCount();
     displayCart();
 }
 
+// Update item quantity
 function updateQuantity(id, change) {
     const item = cart.find(item => item.id === id);
     if (item) {
@@ -42,83 +39,143 @@ function updateQuantity(id, change) {
         if (item.quantity <= 0) {
             removeFromCart(id);
         } else {
-            localStorage.setItem('cart', JSON.stringify(cart));
+            saveCart();
             updateCartCount();
             displayCart();
         }
     }
 }
 
+// Save cart to localStorage
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Update cart count badge
+function updateCartCount() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const cartCountElements = document.querySelectorAll('.cart-count');
+    cartCountElements.forEach(el => {
+        el.textContent = totalItems;
+        el.style.display = totalItems > 0 ? 'block' : 'none';
+    });
+}
+
+// Display cart items on cart page
 function displayCart() {
-    const cartItems = document.getElementById('cart-items');
-    const cartSubtotal = document.getElementById('cart-subtotal');
-    const cartShipping = document.getElementById('cart-shipping');
-    const cartTotal = document.getElementById('cart-total');
+    const cartContainer = document.getElementById('cart-items');
+    const cartSummary = document.getElementById('cart-summary');
     
-    if (!cartItems) return;
+    if (!cartContainer) return;
     
     if (cart.length === 0) {
-        cartItems.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
-        if (cartSubtotal) cartSubtotal.textContent = '$0.00';
-        if (cartShipping) cartShipping.textContent = '$0.00';
-        if (cartTotal) cartTotal.textContent = '$0.00';
+        cartContainer.innerHTML = `
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+                <a href="index.html#products" class="btn btn-primary">Continue Shopping</a>
+            </div>
+        `;
+        if (cartSummary) cartSummary.style.display = 'none';
         return;
     }
     
     let html = '';
-    let subtotal = 0;
+    let total = 0;
     
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
+        total += itemTotal;
+        
         html += `
             <div class="cart-item">
-                <div class="item-info">
+                <div class="cart-item-info">
                     <h3>${item.name}</h3>
-                    <p>$${item.price.toFixed(2)}</p>
+                    <p class="cart-item-price">$${item.price.toFixed(2)}</p>
                 </div>
-                <div class="item-quantity">
-                    <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                <div class="cart-item-quantity">
+                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
                     <span>${item.quantity}</span>
-                    <button onclick="updateQuantity(${item.id}, 1)">+</button>
+                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
                 </div>
-                <div class="item-total">$${itemTotal.toFixed(2)}</div>
-                <button class="remove-btn" onclick="removeFromCart(${item.id})">×</button>
+                <div class="cart-item-total">
+                    $${itemTotal.toFixed(2)}
+                </div>
+                <button class="remove-btn" onclick="removeFromCart(${item.id})">
+                    <i class="fas fa-trash"></i>
+                </button>
             </div>
         `;
     });
     
-    cartItems.innerHTML = html;
+    cartContainer.innerHTML = html;
     
-    const shipping = subtotal > 35 ? 0 : 5.99;
-    const total = subtotal + shipping;
-    
-    if (cartSubtotal) cartSubtotal.textContent = '$' + subtotal.toFixed(2);
-    if (cartShipping) cartShipping.textContent = shipping === 0 ? 'FREE' : '$' + shipping.toFixed(2);
-    if (cartTotal) cartTotal.textContent = '$' + total.toFixed(2);
+    if (cartSummary) {
+        cartSummary.style.display = 'block';
+        const subtotal = total;
+        const shipping = subtotal > 35 ? 0 : 5.99;
+        const grandTotal = subtotal + shipping;
+        
+        cartSummary.innerHTML = `
+            <h3>Order Summary</h3>
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>$${subtotal.toFixed(2)}</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>${shipping === 0 ? 'FREE' : '$' + shipping.toFixed(2)}</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total</span>
+                <span>$${grandTotal.toFixed(2)}</span>
+            </div>
+            <button class="btn btn-primary checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        `;
+    }
 }
 
+// Show notification
 function showNotification(message) {
+    // Remove existing notification
+    const existing = document.querySelector('.cart-notification');
+    if (existing) existing.remove();
+    
+    // Create new notification
     const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.textContent = message;
-    notification.style.cssText = 'position:fixed;top:20px;right:20px;background:#4ecdc4;color:white;padding:15px 20px;border-radius:8px;z-index:1000;animation:slideIn 0.3s ease;';
+    notification.className = 'cart-notification';
+    notification.innerHTML = `
+        <i class="fas fa-check-circle"></i>
+        <span>${message}</span>
+    `;
+    
     document.body.appendChild(notification);
     
+    // Animate in
+    setTimeout(() => notification.classList.add('show'), 10);
+    
+    // Remove after 3 seconds
     setTimeout(() => {
-        notification.remove();
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
 
+// Checkout function
 function checkout() {
     if (cart.length === 0) {
-        alert('Your cart is empty!');
+        showNotification('Your cart is empty!');
         return;
     }
-    alert('Checkout functionality coming soon! Total: ' + document.getElementById('cart-total').textContent);
+    
+    alert('Thank you for your order! This is a demo store - checkout functionality would integrate with a payment processor like Stripe or PayPal.');
+    cart = [];
+    saveCart();
+    updateCartCount();
+    displayCart();
 }
 
-// Initialize
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     updateCartCount();
     displayCart();
