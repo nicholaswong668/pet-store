@@ -71,7 +71,6 @@ function displayCart() {
     if (cart.length === 0) {
         cartContainer.innerHTML = `
             <div class="empty-cart">
-                <i class="fas fa-shopping-cart"></i>
                 <p>Your cart is empty</p>
                 <a href="index.html#products" class="btn btn-primary">Continue Shopping</a>
             </div>
@@ -101,9 +100,7 @@ function displayCart() {
                 <div class="cart-item-total">
                     $${itemTotal.toFixed(2)}
                 </div>
-                <button class="remove-btn" onclick="removeFromCart(${item.id})">
-                    <i class="fas fa-trash"></i>
-                </button>
+                <button class="remove-btn" onclick="removeFromCart(${item.id})">×</button>
             </div>
         `;
     });
@@ -145,7 +142,6 @@ function showNotification(message) {
     const notification = document.createElement('div');
     notification.className = 'cart-notification';
     notification.innerHTML = `
-        <i class="fas fa-check-circle"></i>
         <span>${message}</span>
     `;
     
