@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - PetJoy Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Cart Page Specific Styles */
+        .cart-section {
+            padding: 60px 0;
+            min-height: 60vh;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .cart-container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+        
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .cart-item {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: 20px;
+            align-items: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .cart-item-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            width: 36px;
+            height: 36px;
+            border: 2px solid #e0e0e0;
+            background: #fff;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quantity-btn:hover {
+            border-color: #4CAF50;
+            background: #f0f9f0;
+        }
+        
+        .cart-item-quantity span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .cart-item-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #333;
+            min-width: 80px;
+            text-align: right;
+        }
+        
+        .remove-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: #fee;
+            color: #d32f2f;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .remove-btn:hover {
+            background: #fdd;
+            transform: scale(1.1);
+        }
+        
+        .cart-summary {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .cart-summary h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .summary-row.total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            padding-top: 15px;
+            margin-top: 15px;
+            border-top: 2px solid #eee;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-cart p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        @media (max-width: 768px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .cart-item-quantity {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">🐾 PetJoy Store</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#products">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="cart-icon">
+                    <a href="cart.html">🛒 <span class="cart-count">0</span></a>
+                </div>
+                <div class="mobile-menu">☰</div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="container">
+            <h1 class="page-title">Shopping Cart</h1>
+            
+            <div class="cart-container">
+                <div id="cart-items" class="cart-items">
+                    <!-- Cart items will be dynamically inserted here -->
+                </div>
+                
+                <div id="cart-summary" class="cart-summary">
+                    <!-- Order summary will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>🐾 PetJoy Store</h4>
+                    <p>Premium pet supplies for happy pets and happy owners.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#products">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@petjoystore.com</p>
+                    <div class="social-links">
+                        <a href="#">📘</a>
+                        <a href="#">📸</a>
+                        <a href="#">🐦</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PetJoy Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize cart from localStorage or empty array
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Add item to cart
+        function addToCart(id, name, price) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            saveCart();
+            updateCartCount();
+            showNotification(name + ' added to cart!');
+        }
+
+        // Remove item from cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCart();
+            updateCartCount();
+            displayCart();
+        }
+
+        // Update item quantity
+        function updateQuantity(id, change) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(id);
+                } else {
+                    saveCart();
+                    updateCartCount();
+                    displayCart();
+                }
+            }
+        }
+
+        // Save cart to localStorage
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Update cart count badge
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            cartCountElements.forEach(el => {
+                el.textContent = totalItems;
+                el.style.display = totalItems > 0 ? 'block' : 'none';
+            });
+        }
+
+        // Display cart items on cart page
+        function displayCart() {
+            const cartContainer = document.getElementById('cart-items');
+            const cartSummary = document.getElementById('cart-summary');
+            
+            if (!cartContainer) return;
+            
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<div class="empty-cart"><p>Your cart is empty</p><a href="index.html#products" class="btn btn-primary">Continue Shopping</a></div>';
+                if (cartSummary) cartSummary.style.display = 'none';
+                return;
+            }
+            
+            let html = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                html += '<div class="cart-item">' +
+                    '<div class="cart-item-info">' +
+                        '<h3>' + item.name + '</h3>' +
+                        '<p class="cart-item-price">$' + item.price.toFixed(2) + '</p>' +
+                    '</div>' +
+                    '<div class="cart-item-quantity">' +
+                        '<button class="quantity-btn" onclick="updateQuantity(\'' + item.id + '\', -1)">-</button>' +
+                        '<span>' + item.quantity + '</span>' +
+                        '<button class="quantity-btn" onclick="updateQuantity(\'' + item.id + '\', 1)">+</button>' +
+                    '</div>' +
+                    '<div class="cart-item-total">$' + itemTotal.toFixed(2) + '</div>' +
+                    '<button class="remove-btn" onclick="removeFromCart(\'' + item.id + '\')">×</button>' +
+                '</div>';
+            });
+            
+            cartContainer.innerHTML = html;
+            
+            if (cartSummary) {
+                cartSummary.style.display = 'block';
+                const subtotal = total;
+                const shipping = subtotal > 35 ? 0 : 5.99;
+                const grandTotal = subtotal + shipping;
+                
+                cartSummary.innerHTML = '<h3>Order Summary</h3>' +
+                    '<div class="summary-row"><span>Subtotal</span><span>$' + subtotal.toFixed(2) + '</span></div>' +
+                    '<div class="summary-row"><span>Shipping</span><span>' + (shipping === 0 ? 'FREE' : '$' + shipping.toFixed(2)) + '</span></div>' +
+                    '<div class="summary-row total"><span>Total</span><span>$' + grandTotal.toFixed(2) + '</span></div>' +
+                    '<button class="btn btn-primary checkout-btn" onclick="checkout()">Proceed to Checkout</button>';
+            }
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const existing = document.querySelector('.cart-notification');
+            if (existing) existing.remove();
+            
+            const notification = document.createElement('div');
+            notification.className = 'cart-notification';
+            notification.innerHTML = '<span>' + message + '</span>';
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 10);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Checkout function
+        function checkout() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!');
+                return;
+            }
+            
+            alert('Thank you for your order! This is a demo store - checkout functionality would integrate with a payment processor like Stripe or PayPal.');
+            cart = [];
+            saveCart();
+            updateCartCount();
+            displayCart();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            displayCart();
+        });
+    </script>
+</body>
+</html>
