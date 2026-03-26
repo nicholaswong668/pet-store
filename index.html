@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetJoy Store - Premium Pet Supplies</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo">PetJoy Store</a>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="#products">Shop</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+            <a href="cart.html" class="cart-icon">
+                🛒
+                <span class="cart-count" style="display: none;">0</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1>Premium Supplies for Happy Pets</h1>
+            <p>Discover the best for your furry friends</p>
+            <a href="#products" class="btn-primary">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Features Bar -->
+    <section class="features-bar">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span class="feature-icon">🚚</span>
+                    <div class="feature-text">
+                        <strong>Free Shipping</strong>
+                        <span>On orders over $35</span>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">⭐</span>
+                    <div class="feature-text">
+                        <strong>Quality Guaranteed</strong>
+                        <span>Premium materials</span>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🏷️</span>
+                    <div class="feature-text">
+                        <strong>Special Offers</strong>
+                        <span>Up to 40% off</span>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">💬</span>
+                    <div class="feature-text">
+                        <strong>24/7 Support</strong>
+                        <span>We're here to help</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            
+            <div class="product-grid">
+                <!-- 产品1 -->
+                <div class="product-card">
+                    <a href="product.html?id=1" class="product-link">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=400&fit=crop" alt="Silicone Pet Lick Mat">
+                            <button class="product-quick-add" onclick="event.preventDefault(); addToCart('1', 'Silicone Pet Lick Mat', 19.99)">Quick Add</button>
+                        </div>
+                        <div class="product-info">
+                            <h3>Silicone Pet Lick Mat</h3>
+                            <p class="product-desc">Slow eating, promotes dental health</p>
+                            <div class="product-price">
+                                <span class="current-price">$19.99</span>
+                                <span class="original-price">$29.99</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 产品2 -->
+                <div class="product-card">
+                    <a href="product.html?id=2" class="product-link">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=400&fit=crop" alt="Portable Pet Paw Cleaner">
+                            <button class="product-quick-add" onclick="event.preventDefault(); addToCart('2', 'Portable Pet Paw Cleaner', 24.99)">Quick Add</button>
+                        </div>
+                        <div class="product-info">
+                            <h3>Portable Pet Paw Cleaner</h3>
+                            <p class="product-desc">Clean paws, healthy home</p>
+                            <div class="product-price">
+                                <span class="current-price">$24.99</span>
+                                <span class="original-price">$34.99</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 产品3 -->
+                <div class="product-card">
+                    <a href="product.html?id=3" class="product-link">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=400&fit=crop" alt="Teeth Whitening Kit">
+                            <button class="product-quick-add" onclick="event.preventDefault(); addToCart('3', 'Teeth Whitening Kit', 29.99)">Quick Add</button>
+                        </div>
+                        <div class="product-info">
+                            <h3>Teeth Whitening Kit</h3>
+                            <p class="product-desc">Whiter teeth, fresher breath</p>
+                            <div class="product-price">
+                                <span class="current-price">$29.99</span>
+                                <span class="original-price">$49.99</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 产品4 -->
+                <div class="product-card">
+                    <a href="product.html?id=4" class="product-link">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop" alt="Semi-Enclosed Cat Litter Box">
+                            <button class="product-quick-add" onclick="event.preventDefault(); addToCart('4', 'Semi-Enclosed Cat Litter Box', 32.99)">Quick Add</button>
+                        </div>
+                        <div class="product-info">
+                            <h3>Semi-Enclosed Cat Litter Box</h3>
+                            <p class="product-desc">Modern design, less mess</p>
+                            <div class="product-price">
+                                <span class="current-price">$32.99</span>
+                                <span class="original-price">$45.99</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <section class="promo-banner">
+        <div class="container">
+            <h2>Free Shipping on Orders Over $35</h2>
+            <p>Shop now and save on delivery costs</p>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Subscribe & Save</h2>
+            <p>Join our newsletter for 10% off your first order</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 PetJoy Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 页面加载时更新购物车数量
+        window.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+</body>
+</html>
