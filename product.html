@@ -5,12 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details - PetJoy Store</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* 产品详情页额外样式 */
+        /* 产品详情页额外样式 - 修复布局问题 */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        
+        .site-header {
+            flex-shrink: 0;
+        }
+        
         .product-detail-container {
+            flex: 1;
             max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
         }
         
         .product-detail-wrapper {
@@ -195,8 +214,46 @@
             transition: color 0.3s;
         }
         
-        .back-to-shop:hover {
-            color: var(--black);
+        .site-footer {
+            flex-shrink: 0;
+            position: relative;
+            z-index: 10;
+            background: white;
+        }
+
+        /* 确保Header背景正确 */
+        .site-header {
+            background: white !important;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* 修复产品详情区域 */
+        .product-detail-wrapper {
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .product-detail-container::after {
+            content: '';
+            display: block;
+            height: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .product-detail-wrapper {
+                gap: 30px;
+            }
+
+            .reviews-summary {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .rating-bars {
+                width: 100%;
+                max-width: none;
+            }
         }
         
         /* 评价模块 */
