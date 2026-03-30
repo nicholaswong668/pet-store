@@ -1054,7 +1054,7 @@
             // Add to cart with image and color info
             const uniqueId = colorName ? product.id + '_' + colorName.replace(/\s+/g, '_') : product.id;
             
-            addToCart(uniqueId, product.name, product.price, image, colorName);
+            addToCart(uniqueId, product.name, product.price, image, colorName, quantity);
             
             alert('✓ Added to cart!\n\n' + product.name + (colorName ? ' (' + colorName + ')' : '') + ' x' + quantity);
             updateCartCount();

@@ -12,3 +12,4 @@
 - 产品3使用Unsplash占位图
 - 使用外部CSS (css/style.css) 和 JS (js/main.js)
 - cart.html 已创建，购物车数量增减/删除功能已修复
+- 已回滚到添加SKU缩略图之前的状态（用户转交国外处理）

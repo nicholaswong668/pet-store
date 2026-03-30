@@ -2,11 +2,16 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Add item to cart
-function addToCart(id, name, price, image, color) {
+function addToCart(id, name, price, image, color, quantity) {
+    // 确保quantity是数字且至少为1
+    if (typeof quantity !== 'number' || quantity < 1) {
+        quantity = 1;
+    }
+    
     const existingItem = cart.find(item => item.id === id);
     
     if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity += quantity;
     } else {
         cart.push({
             id: id,
@@ -14,13 +19,13 @@ function addToCart(id, name, price, image, color) {
             price: price,
             image: image || '',
             color: color || '',
-            quantity: 1
+            quantity: quantity
         });
     }
     
     saveCart();
     updateCartCount();
-    showNotification(name + (color ? ' (' + color + ')' : '') + ' added to cart!');
+    showNotification(name + (color ? ' (' + color + ')' : '') + ' added to cart! (' + quantity + ' items)');
 }
 
 // Remove item from cart
