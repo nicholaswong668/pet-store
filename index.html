@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetJoy Store - Premium Pet Supplies</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">PetJoy Store</a>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="#products">Shop</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="nav-right">
+                    <div class="cart-icon">
+                        <a href="cart.html">Cart <span class="cart-count">0</span></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1920&h=620&fit=crop" alt="Hero" class="hero-image">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Premium Supplies for Happy Pets</h1>
+                <p>Discover the best for your furry friends</p>
+                <a href="#products" class="btn btn-white">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Bar -->
+    <section class="features">
+        <div class="container">
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="feature-icon">🚚</span>
+                    <h3>Free Shipping</h3>
+                    <p>On orders over $35</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">⭐</span>
+                    <h3>Quality Guaranteed</h3>
+                    <p>Premium materials</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🏷️</span>
+                    <h3>Special Offers</h3>
+                    <p>Up to 40% off</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">💬</span>
+                    <h3>24/7 Support</h3>
+                    <p>We're here to help</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Products</h2>
+                <a href="#products" class="section-link">View All</a>
+            </div>
+            
+            <div class="product-grid">
+                <!-- 产品1 -->
+                <a href="product.html?id=1" class="product-card">
+                    <div class="product-image">
+                        <img src="images/litter-box-1.jpg" alt="Extra Large Capacity Cat Litter Box">
+                        <span class="product-badge sale">Sale</span>
+                        <button class="product-quick-add" onclick="event.preventDefault(); addToCart('1', 'Extra Large Capacity Cat Litter Box', 19.99, 'images/litter-box-1.jpg', '')">Quick Add</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Extra Large Capacity Cat Litter Box</h3>
+                        <p class="product-desc">Open-top, anti-scatter, easy to clean</p>
+                        <div class="product-price">
+                            <span class="price">$19.99</span>
+                            <span class="original-price">$29.99</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 产品2 -->
+                <a href="product.html?id=2" class="product-card">
+                    <div class="product-image">
+                        <img src="images/litter-box-6.jpg" alt="Stainless Steel Cat Litter Box">
+                        <span class="product-badge sale">Sale</span>
+                        <button class="product-quick-add" onclick="event.preventDefault(); addToCart('2', 'Stainless Steel Cat Litter Box', 89.00, 'images/litter-box-6.jpg', '')">Quick Add</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Stainless Steel Cat Litter Box</h3>
+                        <p class="product-desc">Extra large, rust-resistant, easy to clean</p>
+                        <div class="product-price">
+                            <span class="price">$89.00</span>
+                            <span class="original-price">$129.00</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 产品3 -->
+                <a href="product.html?id=3" class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=400&fit=crop" alt="Teeth Whitening Kit">
+                        <span class="product-badge sale">Sale</span>
+                        <button class="product-quick-add" onclick="event.preventDefault(); addToCart('3', 'Teeth Whitening Kit', 29.99, 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=600&fit=crop', '')">Quick Add</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Teeth Whitening Kit</h3>
+                        <p class="product-desc">Whiter teeth, fresher breath</p>
+                        <div class="product-price">
+                            <span class="price">$29.99</span>
+                            <span class="original-price">$49.99</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 产品4 -->
+                <a href="product.html?id=4" class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop" alt="Semi-Enclosed Cat Litter Box">
+                        <span class="product-badge sale">Sale</span>
+                        <button class="product-quick-add" onclick="event.preventDefault(); addToCart('4', 'Semi-Enclosed Cat Litter Box', 32.99, 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&h=600&fit=crop', '')">Quick Add</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Semi-Enclosed Cat Litter Box</h3>
+                        <p class="product-desc">Modern design, less mess</p>
+                        <div class="product-price">
+                            <span class="price">$32.99</span>
+                            <span class="original-price">$45.99</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <section class="promo-banner">
+        <div class="container">
+            <h2>Free Shipping on Orders Over $35</h2>
+            <p>Shop now and save on delivery costs</p>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Subscribe & Save</h2>
+            <p>Join our newsletter for 10% off your first order</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>PetJoy Store</h4>
+                    <p>Your trusted destination for premium pet supplies. We care for your pets like family.</p>
+                    <div class="social-links">
+                        <a href="#">📘</a>
+                        <a href="#">📸</a>
+                        <a href="#">🐦</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#products">All Products</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">Sale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PetJoy Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Notification -->
+    <div class="cart-notification" id="cart-notification">Added to cart!</div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Clear old cart data to use new format
+        localStorage.removeItem('cart');
+        
+        window.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+</body>
+</html>
