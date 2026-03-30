@@ -615,8 +615,47 @@
         </div>
     </footer>
 
-    <script src="js/main.js?v=2"></script>
     <script>
+        // Cart functions - embedded directly to avoid caching issues
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        function addToCart(id, name, price, image, color, quantity) {
+            if (typeof quantity !== 'number' || quantity < 1) quantity = 1;
+            
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    image: image || '',
+                    color: color || '',
+                    quantity: quantity
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelectorAll('.cart-count').forEach(el => {
+                el.textContent = totalItems;
+                el.style.display = totalItems > 0 ? 'block' : 'none';
+            });
+            
+            alert('✓ Added to cart!\n\n' + name + (color ? ' (' + color + ')' : '') + ' x' + quantity);
+        }
+        
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelectorAll('.cart-count').forEach(el => {
+                el.textContent = totalItems;
+                el.style.display = totalItems > 0 ? 'block' : 'none';
+            });
+        }
+        
         const productsData = {
             "1": {
                 id: "1",
