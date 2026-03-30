@@ -273,12 +273,8 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=2"></script>
     <script>
-        // Clear old cart data to use new format
-        localStorage.removeItem('cart');
-        cart = [];
-
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             updateCartCount();

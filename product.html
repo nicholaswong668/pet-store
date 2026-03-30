@@ -615,7 +615,7 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=2"></script>
     <script>
         const productsData = {
             "1": {
@@ -1061,9 +1061,6 @@
         }
 
         window.addEventListener('DOMContentLoaded', function() {
-            // Clear old cart data to use new format
-            localStorage.removeItem('cart');
-            
             loadProductDetail();
             updateCartCount();
         });
