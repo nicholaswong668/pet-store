@@ -582,13 +582,13 @@
                 <div class="quantity-selector">
                     <label>Quantity:</label>
                     <div class="quantity-controls">
-                        <button class="quantity-btn" onclick="changeQuantity(-1)">−</button>
+                        <button type="button" class="quantity-btn" onclick="changeQuantity(-1)">−</button>
                         <input type="text" id="quantity" class="quantity-value" value="1" readonly>
-                        <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                        <button type="button" class="quantity-btn" onclick="changeQuantity(1)">+</button>
                     </div>
                 </div>
                 
-                <button class="add-to-cart-btn" onclick="addToCartFromDetail()">Add to Cart</button>
+                <button type="button" class="add-to-cart-btn" onclick="addToCartFromDetail()">Add to Cart</button>
             </div>
         </div>
         
@@ -615,47 +615,8 @@
         </div>
     </footer>
 
+    <script src="js/main.js?v=3"></script>
     <script>
-        // Cart functions - embedded directly to avoid caching issues
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        
-        function addToCart(id, name, price, image, color, quantity) {
-            if (typeof quantity !== 'number' || quantity < 1) quantity = 1;
-            
-            const existingItem = cart.find(item => item.id === id);
-            
-            if (existingItem) {
-                existingItem.quantity += quantity;
-            } else {
-                cart.push({
-                    id: id,
-                    name: name,
-                    price: price,
-                    image: image || '',
-                    color: color || '',
-                    quantity: quantity
-                });
-            }
-            
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.querySelectorAll('.cart-count').forEach(el => {
-                el.textContent = totalItems;
-                el.style.display = totalItems > 0 ? 'block' : 'none';
-            });
-            
-            alert('✓ Added to cart!\n\n' + name + (color ? ' (' + color + ')' : '') + ' x' + quantity);
-        }
-        
-        function updateCartCount() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.querySelectorAll('.cart-count').forEach(el => {
-                el.textContent = totalItems;
-                el.style.display = totalItems > 0 ? 'block' : 'none';
-            });
-        }
-        
         const productsData = {
             "1": {
                 id: "1",
@@ -1071,9 +1032,6 @@
             const quantity = parseInt(document.getElementById('quantity').value);
             const product = productsData[productId];
             
-            // Get current displayed image
-            const currentImage = document.getElementById('main-image').src;
-            
             // Use color-specific image if selected, otherwise use first image
             let image = product.images[0];
             if (product.colors && product.colors.length > 0) {
@@ -1095,7 +1053,6 @@
             
             addToCart(uniqueId, product.name, product.price, image, colorName, quantity);
             
-            alert('✓ Added to cart!\n\n' + product.name + (colorName ? ' (' + colorName + ')' : '') + ' x' + quantity);
             updateCartCount();
         }
 
