@@ -16,13 +16,13 @@ const PRODUCT_CATALOG = {
     },
     '3': {
         name: 'Large Capacity Cat Litter Box',
-        image: 'images/litter-box-13.jpg',
+        image: 'images/litter-box-16.jpg',
         variants: {
-            Beige: { image: 'images/litter-box-13.jpg' },
-            Black: { image: 'images/litter-box-14.jpg' },
-            Yellow: { image: 'images/litter-box-15.jpg' },
             Gray: { image: 'images/litter-box-16.jpg' },
-            Green: { image: 'images/litter-box-17.jpg' }
+            Yellow: { image: 'images/litter-box-17.jpg' },
+            Black: { image: 'images/litter-box-18.jpg' },
+            Beige: { image: 'images/litter-box-19.jpg' },
+            Green: { image: 'images/litter-box-20.jpg' }
         }
     },
     '4': {
