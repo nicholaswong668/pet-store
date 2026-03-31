@@ -1,8 +1,56 @@
 // PetJoy Store - Shopping Cart Functionality
 
+const PRODUCT_CATALOG = {
+    '1': {
+        name: 'Extra Large Capacity Cat Litter Box',
+        image: 'images/litter-box-1.jpg'
+    },
+    '2': {
+        name: 'Stainless Steel Cat Litter Box',
+        image: 'images/litter-box-6.jpg',
+        variants: {
+            Black: { image: 'images/litter-box-10.jpg' },
+            'Light Gray': { image: 'images/litter-box-11.jpg' },
+            Khaki: { image: 'images/litter-box-12.jpg' }
+        }
+    },
+    '3': {
+        name: 'Teeth Whitening Kit',
+        image: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=600&fit=crop'
+    },
+    '4': {
+        name: 'Semi-Enclosed Cat Litter Box',
+        image: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&h=600&fit=crop'
+    }
+};
+
 function normalizeQuantity(value) {
     const parsed = Number.parseInt(value, 10);
     return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
+}
+
+function enrichCartItem(item) {
+    const baseId = String(item.id || '').split('_')[0];
+    const product = PRODUCT_CATALOG[baseId];
+    if (!product) {
+        return item;
+    }
+
+    const variantToken = String(item.id || '').includes('_')
+        ? String(item.id).split('_').slice(1).join(' ')
+        : '';
+    const normalizedVariant = variantToken.replace(/_/g, ' ').trim();
+    const color = item.color || normalizedVariant;
+    const variant = color && product.variants ? product.variants[color] : null;
+    const image = item.image || (variant && variant.image) || product.image || '';
+    const baseName = product.name || item.name;
+
+    return {
+        ...item,
+        name: baseName,
+        color: color || '',
+        image: image
+    };
 }
 
 function loadCart() {
@@ -15,7 +63,7 @@ function loadCart() {
         return storedCart
             .filter(item => item && item.id)
             .map(item => ({
-                ...item,
+                ...enrichCartItem(item),
                 quantity: normalizeQuantity(item.quantity)
             }));
     } catch (error) {
@@ -119,13 +167,16 @@ function displayCart() {
         const itemTotal = item.price * itemQuantity;
         total += itemTotal;
         const imageHtml = item.image ? `<img src="${item.image}" alt="${item.name}" class="cart-item-image">` : '';
+        const displayName = item.color ? `${item.name} (${item.color})` : item.name;
+        const skuLine = `<p class="cart-item-sku">SKU: ${item.id}</p>`;
 
         html += `
             <div class="cart-item">
                 ${imageHtml}
                 <div class="cart-item-info">
-                    <h3>${item.name}</h3>
+                    <h3>${displayName}</h3>
                     ${item.color ? `<p class="cart-item-color">${item.color}</p>` : ''}
+                    ${skuLine}
                     <p class="cart-item-price">$${item.price.toFixed(2)}</p>
                 </div>
                 <div class="cart-item-quantity">
