@@ -15,8 +15,15 @@ const PRODUCT_CATALOG = {
         }
     },
     '3': {
-        name: 'Teeth Whitening Kit',
-        image: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=600&fit=crop'
+        name: 'Large Capacity Cat Litter Box',
+        image: 'images/litter-box-13.jpg',
+        variants: {
+            Beige: { image: 'images/litter-box-13.jpg' },
+            Black: { image: 'images/litter-box-14.jpg' },
+            Yellow: { image: 'images/litter-box-15.jpg' },
+            Gray: { image: 'images/litter-box-16.jpg' },
+            Green: { image: 'images/litter-box-17.jpg' }
+        }
     },
     '4': {
         name: 'Semi-Enclosed Cat Litter Box',
