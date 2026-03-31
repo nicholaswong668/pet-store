@@ -1,59 +1,91 @@
 // PetJoy Store - Shopping Cart Functionality
 
-// Initialize cart from localStorage or empty array
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+function normalizeQuantity(value) {
+    const parsed = Number.parseInt(value, 10);
+    return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
+}
 
-// Add item to cart
-function addToCart(id, name, price) {
+function loadCart() {
+    try {
+        const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (!Array.isArray(storedCart)) {
+            return [];
+        }
+
+        return storedCart
+            .filter(item => item && item.id)
+            .map(item => ({
+                ...item,
+                quantity: normalizeQuantity(item.quantity)
+            }));
+    } catch (error) {
+        return [];
+    }
+}
+
+let cart = loadCart();
+
+function addToCart(id, name, price, image, color, quantity) {
+    cart = loadCart();
+    quantity = normalizeQuantity(quantity);
+
     const existingItem = cart.find(item => item.id === id);
-    
+
     if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity = normalizeQuantity(existingItem.quantity) + quantity;
     } else {
         cart.push({
             id: id,
             name: name,
             price: price,
-            quantity: 1
+            image: image || '',
+            color: color || '',
+            quantity: quantity
         });
     }
-    
+
     saveCart();
     updateCartCount();
-    showNotification(`${name} added to cart!`);
+    showNotification(`${name}${color ? ` (${color})` : ''} added to cart! (${quantity} items)`);
 }
 
-// Remove item from cart
 function removeFromCart(id) {
-    cart = cart.filter(item => item.id !== id);
+    cart = loadCart().filter(item => item.id !== id);
     saveCart();
     updateCartCount();
-    displayCart();
-}
-
-// Update item quantity
-function updateQuantity(id, change) {
-    const item = cart.find(item => item.id === id);
-    if (item) {
-        item.quantity += change;
-        if (item.quantity <= 0) {
-            removeFromCart(id);
-        } else {
-            saveCart();
-            updateCartCount();
-            displayCart();
-        }
+    if (document.getElementById('cart-items')) {
+        displayCart();
     }
 }
 
-// Save cart to localStorage
+function updateQuantity(id, change) {
+    cart = loadCart();
+    const item = cart.find(entry => entry.id === id);
+
+    if (!item) {
+        return;
+    }
+
+    item.quantity = normalizeQuantity(item.quantity) + change;
+    if (item.quantity <= 0) {
+        removeFromCart(id);
+        return;
+    }
+
+    saveCart();
+    updateCartCount();
+    if (document.getElementById('cart-items')) {
+        displayCart();
+    }
+}
+
 function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Update cart count badge
 function updateCartCount() {
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cart = loadCart();
+    const totalItems = cart.reduce((sum, item) => sum + normalizeQuantity(item.quantity), 0);
     const cartCountElements = document.querySelectorAll('.cart-count');
     cartCountElements.forEach(el => {
         el.textContent = totalItems;
@@ -61,13 +93,13 @@ function updateCartCount() {
     });
 }
 
-// Display cart items on cart page
 function displayCart() {
+    cart = loadCart();
     const cartContainer = document.getElementById('cart-items');
     const cartSummary = document.getElementById('cart-summary');
-    
+
     if (!cartContainer) return;
-    
+
     if (cart.length === 0) {
         cartContainer.innerHTML = `
             <div class="empty-cart">
@@ -78,41 +110,45 @@ function displayCart() {
         if (cartSummary) cartSummary.style.display = 'none';
         return;
     }
-    
+
     let html = '';
     let total = 0;
-    
+
     cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
+        const itemQuantity = normalizeQuantity(item.quantity);
+        const itemTotal = item.price * itemQuantity;
         total += itemTotal;
-        
+        const imageHtml = item.image ? `<img src="${item.image}" alt="${item.name}" class="cart-item-image">` : '';
+
         html += `
             <div class="cart-item">
+                ${imageHtml}
                 <div class="cart-item-info">
                     <h3>${item.name}</h3>
+                    ${item.color ? `<p class="cart-item-color">${item.color}</p>` : ''}
                     <p class="cart-item-price">$${item.price.toFixed(2)}</p>
                 </div>
                 <div class="cart-item-quantity">
-                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                    <span>${item.quantity}</span>
-                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                    <button class="quantity-btn" onclick="updateQuantity('${item.id}', -1)">-</button>
+                    <span>${itemQuantity}</span>
+                    <button class="quantity-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
                 </div>
                 <div class="cart-item-total">
                     $${itemTotal.toFixed(2)}
                 </div>
-                <button class="remove-btn" onclick="removeFromCart(${item.id})">×</button>
+                <button class="remove-btn" onclick="removeFromCart('${item.id}')">×</button>
             </div>
         `;
     });
-    
+
     cartContainer.innerHTML = html;
-    
+
     if (cartSummary) {
         cartSummary.style.display = 'block';
         const subtotal = total;
         const shipping = subtotal > 35 ? 0 : 5.99;
         const grandTotal = subtotal + shipping;
-        
+
         cartSummary.innerHTML = `
             <h3>Order Summary</h3>
             <div class="summary-row">
@@ -132,38 +168,33 @@ function displayCart() {
     }
 }
 
-// Show notification
 function showNotification(message) {
-    // Remove existing notification
     const existing = document.querySelector('.cart-notification');
     if (existing) existing.remove();
-    
-    // Create new notification
+
     const notification = document.createElement('div');
     notification.className = 'cart-notification';
     notification.innerHTML = `
         <span>${message}</span>
     `;
-    
+
     document.body.appendChild(notification);
-    
-    // Animate in
+
     setTimeout(() => notification.classList.add('show'), 10);
-    
-    // Remove after 3 seconds
+
     setTimeout(() => {
         notification.classList.remove('show');
         setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
 
-// Checkout function
 function checkout() {
+    cart = loadCart();
     if (cart.length === 0) {
         showNotification('Your cart is empty!');
         return;
     }
-    
+
     alert('Thank you for your order! This is a demo store - checkout functionality would integrate with a payment processor like Stripe or PayPal.');
     cart = [];
     saveCart();
@@ -171,7 +202,6 @@ function checkout() {
     displayCart();
 }
 
-// Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     updateCartCount();
     displayCart();
