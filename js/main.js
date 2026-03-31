@@ -26,8 +26,8 @@ const PRODUCT_CATALOG = {
         }
     },
     '4': {
-        name: 'Semi-Enclosed Cat Litter Box',
-        image: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&h=600&fit=crop'
+        name: 'Smart Self-Cleaning Litter Box with APP Control, Odor Exhaust System & 10L Waste Bin - White',
+        image: 'images/litter-box-21.jpg'
     }
 };
 
