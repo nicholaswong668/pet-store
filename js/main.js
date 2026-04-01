@@ -27,7 +27,7 @@ const PRODUCT_CATALOG = {
     },
     '4': {
         name: 'Smart Self-Cleaning Litter Box with APP Control, Odor Exhaust System & 10L Waste Bin - White',
-        image: 'images/litter-box-21.jpg'
+        image: 'images/litter-box-25.jpg'
     },
     '5': {
         name: 'Self Cleaning Litter Box, Large Capacity Automatic Cat Litter Box Self Cleaning for Cats, App Control,Safety Protection, 2 Roll Garbage Bags,White & Grey',
