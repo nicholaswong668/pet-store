@@ -40,6 +40,10 @@ const PRODUCT_CATALOG = {
     '7': {
         name: 'Self Cleaning Litter Box,Open Top Automatic Litter Box with App Control for Multiple Cats, Safety Sensors Protection, Odor Control Includes 2 roll Liners,Large Waste Bin, Cream White',
         image: 'images/litter-box-40.jpg'
+    },
+    '8': {
+        name: 'Automatic Cat Litter Box Self Cleaning - APP Control and Weight Monitoring - Ultra-Quiet, Suitable for Medium Cats and Kittens, Safe Anti-Pinch Litter Box (Assembly Required) - White',
+        image: 'images/litter-box-48.jpg'
     }
 };
 
