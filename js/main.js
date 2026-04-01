@@ -36,6 +36,10 @@ const PRODUCT_CATALOG = {
     '6': {
         name: 'Automatic Litter Box, (2026) Multi-Function Upgrade Robot Self Cleaning Litter Box for Multiple Cats, 65L+9L Extra Large, APP Control, Deodorization, 3 Rolls Litter Bag Liners, 1 Odor Eliminator',
         image: 'images/litter-box-33.jpg'
+    },
+    '7': {
+        name: 'Self Cleaning Litter Box,Open Top Automatic Litter Box with App Control for Multiple Cats, Safety Sensors Protection, Odor Control Includes 2 roll Liners,Large Waste Bin, Cream White',
+        image: 'images/litter-box-40.jpg'
     }
 };
 
