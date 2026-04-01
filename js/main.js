@@ -30,7 +30,7 @@ const PRODUCT_CATALOG = {
         image: 'images/litter-box-21.jpg'
     },
     '5': {
-        name: 'Cumrige Self Cleaning Litter Box, Large Capacity Automatic Cat Litter Box Self Cleaning for Cats, App Control,Safety Protection, 2 Roll Garbage Bags,White & Grey',
+        name: 'Self Cleaning Litter Box, Large Capacity Automatic Cat Litter Box Self Cleaning for Cats, App Control,Safety Protection, 2 Roll Garbage Bags,White & Grey',
         image: 'images/litter-box-27.jpg'
     },
     '6': {
