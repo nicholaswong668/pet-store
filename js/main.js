@@ -3,20 +3,20 @@
 const PRODUCT_CATALOG = {
     '1': {
         name: 'Extra Large Capacity Cat Litter Box',
-        image: 'images/litter-box-1.jpg'
+        image: 'images/litter-box-1-1.jpg'
     },
     '2': {
         name: 'Stainless Steel Cat Litter Box',
-        image: 'images/litter-box-6.jpg',
+        image: 'images/litter-box-11-1.jpg',
         variants: {
             Black: { image: 'images/litter-box-10.jpg' },
-            'Light Gray': { image: 'images/litter-box-11.jpg' },
+            'Light Gray': { image: 'images/litter-box-11-1.jpg' },
             Khaki: { image: 'images/litter-box-12.jpg' }
         }
     },
     '3': {
         name: 'Large Capacity Cat Litter Box',
-        image: 'images/litter-box-16.jpg',
+        image: 'images/litter-box-13-1.jpg',
         variants: {
             Gray: { image: 'images/litter-box-16.jpg' },
             Yellow: { image: 'images/litter-box-17.jpg' },
