@@ -1345,9 +1345,15 @@
                         selectedColor = color;
                         selectedColorName.textContent = color.name;
                         
-                        // Change main image
-                        currentImageIndex = color.imageIndex || 0;
-                        document.getElementById('main-image').src = product.images[currentImageIndex];
+                        // Change main image, preferring the variant-specific image
+                        const variantImageIndex = product.images.indexOf(color.image);
+                        if (variantImageIndex >= 0) {
+                            currentImageIndex = variantImageIndex;
+                            document.getElementById('main-image').src = product.images[currentImageIndex];
+                        } else {
+                            currentImageIndex = typeof color.imageIndex === 'number' ? color.imageIndex : 0;
+                            document.getElementById('main-image').src = color.image || product.images[currentImageIndex];
+                        }
                         
                         // Update thumbnail selection
                         document.querySelectorAll('.product-thumbnail').forEach((t, i) => {
