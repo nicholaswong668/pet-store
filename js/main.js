@@ -57,10 +57,10 @@ const PRODUCT_CATALOG = {
         name: 'Stainless Steel Litter Box with High Sided, Metal Cat Litter Box, Odor-Free, Non-Stick Litterbox Pan, Easy to Clean Pet Supplies Toilet Tray for Indoor Cats, Kittens or Multicat Homes',
         image: 'images/litter-box-68.jpg',
         variants: {
-            'Size: S': { image: 'images/litter-box-68.jpg' },
-            'Size: M': { image: 'images/litter-box-69.jpg' },
-            'Size: L': { image: 'images/litter-box-70.jpg' },
-            'Size: XL': { image: 'images/litter-box-71.jpg' }
+            'Size: S': { image: 'images/litter-box-76.jpg' },
+            'Size: M': { image: 'images/litter-box-77.jpg' },
+            'Size: L': { image: 'images/litter-box-78.jpg' },
+            'Size: XL': { image: 'images/litter-box-79.jpg' }
         }
     }
 };
