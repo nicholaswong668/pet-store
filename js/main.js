@@ -52,6 +52,16 @@ const PRODUCT_CATALOG = {
     '10': {
         name: 'Stainless Steel Litter Box with Lid,Front Entry Top Exit Kitty LitterBox,Extra Large Enclosed Metal Cat Box with Litter Scoop & Litter Mat-Dark Gray',
         image: 'images/litter-box-62.jpg'
+    },
+    '11': {
+        name: 'Stainless Steel Litter Box with High Sided, Metal Cat Litter Box, Odor-Free, Non-Stick Litterbox Pan, Easy to Clean Pet Supplies Toilet Tray for Indoor Cats, Kittens or Multicat Homes',
+        image: 'images/litter-box-68.jpg',
+        variants: {
+            'Size: S': { image: 'images/litter-box-68.jpg' },
+            'Size: M': { image: 'images/litter-box-69.jpg' },
+            'Size: L': { image: 'images/litter-box-70.jpg' },
+            'Size: XL': { image: 'images/litter-box-71.jpg' }
+        }
     }
 };
 

@@ -580,7 +580,7 @@
                 </div>
                 
                 <div id="color-selector" class="color-selector" style="display: none;">
-                    <label>Color: <span id="selected-color-name"></span></label>
+                    <label><span id="option-selector-label">Color</span>: <span id="selected-color-name"></span></label>
                     <div id="color-options" class="color-options"></div>
                 </div>
                 
@@ -1155,6 +1155,66 @@
                         helpful: 8
                     }
                 ]
+            },
+            "11": {
+                id: "11",
+                name: "Stainless Steel Litter Box with High Sided, Metal Cat Litter Box, Odor-Free, Non-Stick Litterbox Pan, Easy to Clean Pet Supplies Toilet Tray for Indoor Cats, Kittens or Multicat Homes",
+                price: 35.90,
+                originalPrice: 69.90,
+                optionLabel: "Size",
+                description: "This stainless steel litter box is designed for cat owners who want a cleaner, sturdier, and lower-odor alternative to plastic trays. Its non-stick metal surface helps prevent waste and smells from lingering, while the high-sided open design improves air circulation and reduces litter scatter. With four size options, rounded safe edges, and a versatile build that suits kittens, adult cats, and multi-cat homes, it offers a practical easy-clean solution for everyday litter box care.",
+                images: [
+                    "images/litter-box-68.jpg",
+                    "images/litter-box-69.jpg",
+                    "images/litter-box-70.jpg",
+                    "images/litter-box-71.jpg",
+                    "images/litter-box-72.jpg",
+                    "images/litter-box-73.jpg",
+                    "images/litter-box-74.jpg",
+                    "images/litter-box-75.jpg"
+                ],
+                features: [
+                    "Large Capacity: Measuring 16.93\" L x 12.99\" W x 5.12\" H, this stainless steel litter box gives kittens, elderly cats, and medium cats comfortable room to use the tray. The open design also promotes air circulation and helps reduce unpleasant odors.",
+                    "Strong and Sturdy: Made of high-quality stainless steel, the box resists corrosion, rust, and wear. Unlike plastic, it does not easily trap residue or odors, helping create a cleaner-smelling home and a healthier space for your cat.",
+                    "Easy Cleaning: The smooth non-stick surface helps waste and litter slide away more easily for faster scooping and fewer full litter changes. It is especially practical for cats that kick litter or urinate high.",
+                    "High Sides & Safe Rounded Edges: Raised sides help contain litter scatter and reduce waste sticking to the walls, while the smooth rounded edges make the tray safer for cats and more comfortable to lift.",
+                    "Versatile Use & Multiple Sizes: Suitable for adult cats, kittens, rabbits, ferrets, and other small pets, this stainless steel box can also serve as a pet bathing tub or storage container. Multiple sizes let you choose the best fit without wasting space."
+                ],
+                colors: [
+                    { name: "Size: S", image: "images/litter-box-68.jpg", imageIndex: 0, price: 35.90 },
+                    { name: "Size: M", image: "images/litter-box-69.jpg", imageIndex: 1, price: 37.90 },
+                    { name: "Size: L", image: "images/litter-box-70.jpg", imageIndex: 2, price: 48.90 },
+                    { name: "Size: XL", image: "images/litter-box-71.jpg", imageIndex: 3, price: 56.90 }
+                ],
+                reviews: [
+                    {
+                        name: "Kelly J.",
+                        rating: 5,
+                        title: "Much fresher than our old plastic pan",
+                        text: "The stainless steel surface is noticeably easier to clean and does not hold odor the way plastic did. The high sides also help a lot with litter scatter around the box.",
+                        date: "2026-03-27",
+                        verified: true,
+                        helpful: 16
+                    },
+                    {
+                        name: "Victor M.",
+                        rating: 5,
+                        title: "Great size options and very sturdy",
+                        text: "I liked being able to choose the right size instead of guessing. The tray feels solid, wipes down quickly, and has been a great upgrade for our two smaller cats.",
+                        date: "2026-03-31",
+                        verified: true,
+                        helpful: 11
+                    },
+                    {
+                        name: "Lauren B.",
+                        rating: 4,
+                        title: "Simple, practical, and easy to maintain",
+                        text: "This is exactly what I wanted from a litter box: durable, easy to scoop, and less odor buildup over time. The rounded edges are a nice detail and make it easier to move when cleaning.",
+                        date: "2026-04-02",
+                        verified: true,
+                        helpful: 7
+                    }
+                ]
             }
         };
 
@@ -1249,12 +1309,27 @@
             const colorSelector = document.getElementById('color-selector');
             const colorOptionsContainer = document.getElementById('color-options');
             const selectedColorName = document.getElementById('selected-color-name');
+            const optionSelectorLabel = document.getElementById('option-selector-label');
+            const variantOptions = product.colors || [];
             
-            if (product.colors && product.colors.length > 0) {
+            colorOptionsContainer.innerHTML = '';
+            colorSelector.style.display = 'none';
+            if (optionSelectorLabel) {
+                optionSelectorLabel.textContent = product.optionLabel || 'Color';
+            }
+            
+            if (variantOptions.length > 0) {
                 colorSelector.style.display = 'block';
-                let selectedColor = product.colors[0];
+                let selectedColor = variantOptions[0];
                 
-                product.colors.forEach((color, index) => {
+                const updateDisplayedPrice = (selectedOption) => {
+                    const activePrice = typeof selectedOption.price === 'number' ? selectedOption.price : product.price;
+                    document.getElementById('current-price').textContent = '$' + activePrice.toFixed(2);
+                    const discount = Math.round((1 - activePrice / product.originalPrice) * 100);
+                    document.getElementById('discount-badge').textContent = 'Save ' + discount + '%';
+                };
+                
+                variantOptions.forEach((color, index) => {
                     const colorBtn = document.createElement('img');
                     colorBtn.className = 'color-option' + (index === 0 ? ' active' : '');
                     colorBtn.src = color.image;
@@ -1275,11 +1350,14 @@
                         document.querySelectorAll('.product-thumbnail').forEach((t, i) => {
                             t.classList.toggle('active', i === currentImageIndex);
                         });
+                        
+                        updateDisplayedPrice(selectedColor);
                     };
                     colorOptionsContainer.appendChild(colorBtn);
                 });
                 
                 selectedColorName.textContent = selectedColor.name;
+                updateDisplayedPrice(selectedColor);
             }
             
             const featuresList = document.getElementById('features-list');
@@ -1365,10 +1443,16 @@
             
             // Use color-specific image if selected, otherwise use first image
             let image = product.images[0];
+            let selectedPrice = product.price;
             if (product.colors && product.colors.length > 0) {
                 const activeColor = document.querySelector('.color-option.active');
                 if (activeColor) {
                     image = activeColor.src;
+                }
+                const selectedVariantName = document.getElementById('selected-color-name').textContent;
+                const selectedVariant = product.colors.find(option => option.name === selectedVariantName);
+                if (selectedVariant && typeof selectedVariant.price === 'number') {
+                    selectedPrice = selectedVariant.price;
                 }
             }
             
@@ -1382,7 +1466,7 @@
             // Add to cart with image and color info
             const uniqueId = colorName ? product.id + '_' + colorName.replace(/\s+/g, '_') : product.id;
             
-            addToCart(uniqueId, product.name, product.price, image, colorName, quantity);
+            addToCart(uniqueId, product.name, selectedPrice, image, colorName, quantity);
             
             updateCartCount();
         }
