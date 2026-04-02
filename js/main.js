@@ -44,6 +44,10 @@ const PRODUCT_CATALOG = {
     '8': {
         name: 'Automatic Cat Litter Box Self Cleaning - APP Control and Weight Monitoring - Ultra-Quiet, Suitable for Medium Cats and Kittens, Safe Anti-Pinch Litter Box (Assembly Required) - White',
         image: 'images/litter-box-48.jpg'
+    },
+    '9': {
+        name: 'Self Cleaning Cat Litter Box, Automatic Cat Litter Box with APP Control Odor Removal Safety Protection for Multiple Cats, with Garbage Bags',
+        image: 'images/litter-box-55.jpg'
     }
 };
 
