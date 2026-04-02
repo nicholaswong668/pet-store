@@ -52,6 +52,9 @@
         .product-image-wrapper {
             position: relative;
             width: 100%;
+            background: #f8f8f8;
+            border-radius: 12px;
+            overflow: hidden;
         }
 
         .product-image-wrapper .gallery-nav {
@@ -93,8 +96,9 @@
         
         .product-main-image {
             width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
+            height: auto;
+            max-height: 760px;
+            object-fit: contain;
             border-radius: 12px;
             background: #f8f8f8;
         }
