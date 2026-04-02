@@ -48,6 +48,10 @@ const PRODUCT_CATALOG = {
     '9': {
         name: 'Self Cleaning Cat Litter Box, Automatic Cat Litter Box with APP Control Odor Removal Safety Protection for Multiple Cats, with Garbage Bags',
         image: 'images/litter-box-55.jpg'
+    },
+    '10': {
+        name: 'Stainless Steel Litter Box with Lid,Front Entry Top Exit Kitty LitterBox,Extra Large Enclosed Metal Cat Box with Litter Scoop & Litter Mat-Dark Gray',
+        image: 'images/litter-box-62.jpg'
     }
 };
 
