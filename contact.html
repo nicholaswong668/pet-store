@@ -5,13 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - PetJoy Store</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .contact-section {
+            padding: 90px 20px 110px;
+            background: linear-gradient(180deg, #f6f3ec 0%, #ffffff 100%);
+        }
+
+        .contact-shell {
+            max-width: 980px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-card {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 56px 48px;
+            background: #ffffff;
+            border: 1px solid #e8e1d3;
+            border-radius: 24px;
+            box-shadow: 0 24px 60px rgba(34, 29, 23, 0.08);
+        }
+
+        .contact-eyebrow {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: #f1eadf;
+            color: #5b5246;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .contact-title {
+            margin: 0 0 18px;
+            font-size: 48px;
+            line-height: 1.1;
+            color: #1f1a14;
+        }
+
+        .contact-intro {
+            max-width: 660px;
+            margin: 0 auto 42px;
+            font-size: 20px;
+            line-height: 1.8;
+            color: #61584b;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .contact-method {
+            padding: 30px 28px;
+            text-align: left;
+            background: #fbfaf7;
+            border: 1px solid #ede5d8;
+            border-radius: 18px;
+        }
+
+        .contact-method-label {
+            margin: 0 0 10px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #7c705f;
+        }
+
+        .contact-method-value {
+            margin: 0 0 12px;
+            font-size: 28px;
+            line-height: 1.35;
+            font-weight: 600;
+            color: #1f1a14;
+            word-break: break-word;
+        }
+
+        .contact-method-note {
+            margin: 0;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #6a6155;
+        }
+
+        @media (max-width: 768px) {
+            .contact-card {
+                padding: 40px 24px;
+            }
+
+            .contact-title {
+                font-size: 36px;
+            }
+
+            .contact-intro {
+                font-size: 18px;
+            }
+
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-method-value {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <a href="index.html">🐾 PetJoy Store</a>
+                    <a href="index.html">PetJoy Store</a>
                 </div>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
@@ -20,45 +131,31 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
                 <div class="cart-icon">
-                    <a href="cart.html">🛒 <span id="cart-count">0</span></a>
+                    <a href="cart.html">Cart <span id="cart-count">0</span></a>
                 </div>
             </nav>
         </div>
     </header>
 
     <section class="contact-section">
-        <div class="container">
-            <h1>Contact Us</h1>
-            <p class="contact-intro">We'd love to hear from you! Reach out for any questions or support.</p>
-            
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Get in Touch</h3>
-                    <p>📧 Email: support@petjoystore.com</p>
-                    <p>🕐 Hours: Mon-Fri 9AM-6PM EST</p>
-                    <p>📍 Location: United States</p>
-                </div>
-                
-                <div class="contact-form">
-                    <h3>Send Message</h3>
-                    <form>
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="faq-section">
-                <h3>FAQ</h3>
-                <div class="faq-item">
-                    <h4>Q: How long is shipping?</h4>
-                    <p>A: 5-10 business days within the US.</p>
-                </div>
-                <div class="faq-item">
-                    <h4>Q: What's your return policy?</h4>
-                    <p>A: 30-day money-back guarantee on all products.</p>
+        <div class="contact-shell">
+            <div class="contact-card">
+                <span class="contact-eyebrow">Contact Us</span>
+                <h1 class="contact-title">Business Contact Information</h1>
+                <p class="contact-intro">For product questions, order support, or wholesale inquiries, please use the contact channels below. The email address and WhatsApp number are set as placeholders for now, and I can replace them as soon as you send me your final details.</p>
+
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <p class="contact-method-label">Email</p>
+                        <p class="contact-method-value">your-email@example.com</p>
+                        <p class="contact-method-note">Email contact placeholder. Send me your final business email later and I will update it directly for you.</p>
+                    </div>
+
+                    <div class="contact-method">
+                        <p class="contact-method-label">WhatsApp</p>
+                        <p class="contact-method-value">+00 0000 000 000</p>
+                        <p class="contact-method-note">WhatsApp placeholder. Once your WhatsApp account is ready, send me the number and I will replace this section for you.</p>
+                    </div>
                 </div>
             </div>
         </div>
